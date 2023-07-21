@@ -1,0 +1,1034 @@
+/*start variable*/
+:root{
+    --main-color:#19c8fa;
+    --transparent-color:rgb(15 116 143 / 70%);
+    --section-padding:100px;
+}
+/*start variable*/
+
+/*start global rules*/
+*{
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    box-sizing:border-box;
+    padding:0;
+    margin:0;
+}
+html{
+    scroll-behavior:smooth;
+}
+body{
+    font-family: 'Open Sans', sans-serif;
+    font-family: 'Work Sans', sans-serif;
+}
+ul{
+    list-style:none;
+}
+
+/*يجعل المحتوي ثابت الحجم مع التغير فى خحم الشاشه*/
+.container{
+    padding-left:15px;
+    padding-right:15px;
+    margin-left:auto;
+    margin-right:auto;
+}
+/*small*/
+@media(min-width:768px){
+    .container{
+        width:750px;
+    }
+}
+/*medium*/
+@media(min-width:992px){
+    .container{
+        width:970px;
+    }
+}
+/*large*/
+@media(min-width:1200px){
+    .container{
+        width:1170px;
+    }
+}
+/*end global rules*/
+/*start components*/
+.main-heading{
+text-align:center;
+}
+.main-heading h2{
+font-weight:normal;
+font-size:40px;
+position:relative; /*عشان حاوزع العناصر التي داخله بال absolute*/
+margin-bottom:70px;
+text-transform:uppercase; 
+}
+.main-heading h2::before{ /*the line*/
+    content:""; /*فارغه لاستطيع عمل تنسيقات لها فى المتصفح*/
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+    height:2px;
+    background-color:#333;
+    bottom:-30px;
+    width:120px;
+}
+.main-heading h2::after{
+    content:"";
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+    width:14px;
+    height:14px;
+    border-radius:50%;
+    border:2px solid #333;
+    bottom:-38px;
+    background-color:white;
+
+}
+.main-heading p{
+    width:550px;
+    margin:0 auto 100px;
+    max-width:100%; /*لكي لا تخرج الكلام خارج الشاشه في وضع الموبايل*/
+    line-height:2;
+    color:#777;
+    
+}
+/*end components*/
+/*start header*/
+header{
+    position:absolute;
+    left:0;
+    width:100%;
+    z-index:2;
+}
+header .container{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:relative; /*لو ابن الكونتينر absolute لايطلع بره الاب ال relativ*/
+    min-height:97px; /*وليس height عشان لو فى يوم زودت ال بادنج يزيد الارتفاع ولا يقف عند 97*/
+}
+header .container::after{
+    content:"";
+    position:absolute;
+    height:1px;
+    background-color:#a2a2a2;
+    bottom:-1;
+    width:calc(100%-30px);
+    left:15px;
+}
+header .logo img{
+    height:40px; /*width changing automatically by scale*/
+}
+header nav{
+    flex:1; /*to make nav to take residual space of div*/
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+}
+header nav .toggle-menu{
+    color:white;
+    font-size:22px;
+}
+@media(min-width:768px){
+    header nav .toggle-menu{
+        display:none;
+    }
+}
+header nav ul{
+display:flex;
+}
+@media(max-width:767px){
+    header nav ul{
+        display:none;
+    }
+    header nav .toggle-menu + ul{ /*next selector=next ul*/
+        display:flex; /*make overide on "display:non;"*/
+        flex-direction:column;
+        position:absolute;
+        top:100%; /*لتبدا من اول المكان الذى فيه الايقونات على طول*/
+        left:0;
+        width:100%; /*عشان تملى المساحه*/
+        background-color:rgb(0 0 0 / 50%);
+        }/*right click on i -force status-hover-write in "header nav .toggle-menu + ul"*/
+        header nav .toggle-menu + ul li a{
+        padding:15px;
+        } 
+        /*or 
+        " 
+        header nav ul li a{
+        padding:15px; !important; 
+    }"
+        */   
+    }
+
+header nav ul li a{
+    padding:40px 10px;    
+    display:block;
+    color:white;
+    text-decoration:none;
+    font-size:14px;
+    transition:0.3s;
+    position:relative;
+    z-index:2;
+}
+header nav ul li a .active,
+header nav ul li a:hover{
+    color:var(--main-color);
+    border-bottom:1px solid var(--main-color);
+}
+header nav .form{
+    width:40px;
+    height:30px;
+    position:relative; /*top put absolute classes inside it*/
+    margin-left:30px;
+    border-left:1px solid white;
+    }
+header nav .form i{
+color:white;
+position:absolute;
+font-size:20px;
+top:50%;
+transform:translatey(-50%); /*to move icon*/
+right:0;
+}
+/*end header*/
+
+/*start landing*/
+.landing{
+    min-height:100vh; /*viewport height ملى الشاشه كامله*/
+    background-color:#1f2021; /*spare color if image did not work*/
+    background-image:url('../images/landing.jpg');
+    background-size:cover; /*to cover all landing area*/
+    position:relative; /*لاجعل الاوفر لاي تاتى فوقه بالضبط*/
+}
+.landing .overlay{
+    position:absolute;
+    left:0;
+    top:0;
+    width:0;
+    height:0;
+    background-color:rgba(0 0 0 / 60%);
+
+}
+.landing .text{
+    position:absolute;
+    left:0;
+    top:50%;
+    transform:translateY(-50%); /*لاوسط الكلام في منتصف الشاشه بالضبط*/
+    width:50%;
+    padding:50px;
+    background-color:var(--transparent-color);
+    color:white;
+    display:flex;
+    justify-content:flex-end; /*to make all contents in the end*/
+}
+.landing .text .content{
+    max-width:500px;
+}
+@media(max-width:767px){
+    .landing .text{
+        width:100%;
+    }
+    .landing .text .content{
+        max-width:100%;
+    }
+}
+.landing .text .content h2{
+    font-size:32px;
+    font-weight:normal;
+    line-height:1.5;
+    margin-bottom:20px;
+}
+.landing .text .content p{
+font-size:14px;
+line-height:2;
+}
+.landing .change-background{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    color:#ddd;
+    }
+@media(max-width:767px){ /*لاخفاء الاسهم فى الموبايل*/
+    .landing .change-background{
+        display:none;
+    }
+}
+.landing .fa-angle-left{
+    left:30px;
+}
+.landing .fa-angle-right{
+    right:30px;
+}
+.landing .bullets{
+position:absolute;
+left:50%;
+transform:translateX(-50%); /*لتوسيط العنصر*/
+bottom:30px;
+display:flex; /*لتنسيق العناصر اللى جواها بالفلكس*/
+}
+.landing .bullets li{
+width:20px;
+height:20px;
+border:1px solid white;
+border-radius:50%;
+margin-right:10px;
+}
+.landing .bullets li.active{
+background-color:var(--main-color);
+border-color:var(--main-color);
+}
+/*end landing*/
+/*start services*/
+.services{
+    padding-top:var(--section-padding);
+    padding-bottom:var(--section-padding);
+}
+@media(min-width:768px){ /*grid */
+    .services .services-container{
+        display:grid;
+        grid-template-columns:repeat(auto-fill,minmax(450px,1fr)); /*fr=fraction*/
+        grid-column-gap:40px;
+        grid-row-gap:60px;
+    }
+}
+.services .srv-box{
+display:flex;
+}
+.services .srv-box i{
+    margin-right:50px;
+}
+@media(max-width:767px){
+    .services .srv-box{
+        display:flex;
+        flex-direction:column; /*لجعل الايقونه اعلى الكلام*/
+        text-align:center;
+        margin-bottom:40px;
+    }
+    .services .srv-box i{
+        margin:0 0 30px;
+    }
+}
+.services .srv-box h3{
+    margin-bottom:30px;
+    color:var(--main-color);
+}
+.services .srv-box p{
+    line-height:2;
+    color:#777;
+}
+/*end services*/
+/*start design*/
+.design{
+    padding-top:var(--section-padding);
+    padding-bottom:var(--section-padding);
+    height:600px;
+    position:relative; /*عشان الابن اعرف اعمله absolute*/
+    background-image:url("../images/design-features.jpg");
+    background-size:cover;
+    display:flex; /*يضع الصوره بجوار الكلام*/
+    align-items:center;
+    overflow:hidden; /*عشان اللى بره السكشن يطير*/
+}
+.design::before{ /*use sodu element to make overlay*/
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background-color:rgb(0 0 0 / 60%);
+    }
+.design .image,.design .text{
+    position:relative;
+    z-index:2; /*عشان ييجوا فوق طبقه الالوان*/
+    flex:1; /*عشان المساحه تتوزع علي الصوره والكلام*/
+}
+.design .image{
+    text-align:center;
+}
+@media(max-width:767px){ /*to hide image in mobile*/
+    .design .image{
+        display:none;
+    }
+}
+.design .image img{ /*عشان انزل الصوره تحت*/
+    position:relative;
+    bottom:-150px;
+}
+.design .text{
+    color:white;
+    padding:50px;
+    background-color:var(--transparent-color);
+}
+.design .text h2{
+    font-weight:normal;
+    text-transform:uppercase; 
+    margin-bottom:40px;
+    }
+.design .text ul li{
+    padding:15px 0;
+}
+.design .text ul li::before{ /*(لاضافه ال icons من خلال ال css)من خلال ال sudo element*/
+    font-family:'font awesome 5.15.4 free';
+    content:'\f108';
+    font-weight:900;
+    margin-right:20px;
+    /*عشان اطلع الكلام فوق شويه*/
+    position:relative;
+    top:1px;
+}
+/*end design*/
+
+/*start portfolio*/
+.portfolio{
+    padding-top:var(--section-padding);
+    padding-bottom:var(--section-padding);
+}
+.portfolio .shuffle{ /*to center the element*/
+    display:flex;
+    justify-content:center;
+
+}
+.portfolio .shuffle li{
+    padding:10px;
+}
+.portfolio .shuffle li.active{
+    background-color:var(--main-color);
+    color:white;
+    }
+.portfolio .imgs-container{
+    display:flex;
+    flex-wrap:wrap; /*عشان لو في محتوى عدي الكونتينر ينزل تحت*/
+    margin-top:60px;
+
+}
+.portfolio .imgs-container .box{
+    overflow:hidden; /*لاخفاء الاشياء التى خارج البوكس*/
+    position:relative;
+}
+.portfolio .imgs-container .box:hover .caption{
+    bottom:0; /*يظهر الكلام الذى اسفل الصوره عندما اقف عليها*/
+}
+.portfolio .imgs-container .box:hover img{
+    transform:rotate(3deg) scale(1.1); /*يدور الصوره عندما اقف عليها*/
+}
+@media(min-width:768px){
+    .portfolio .imgs-container .box{
+        flex-basis:50%; /*لاجعل الفلكس يعمل لازم احدد هذا المتغير - 2 صوره*/
+    }
+    }
+@media(min-width:1199px){
+    .portfolio .imgs-container .box{
+        flex-basis:25%; /*لاجعل الفلكس يعمل لازم احدد هذا المتغير -4 صور*/
+    }
+    }
+.portfolio .imgs-container .box img{
+    max-width:100%; 
+    transition:0.3s;
+}
+.portfolio .imgs-container .box .caption{
+    position:absolute;
+    left:0;
+    padding:20px;
+    background-color:white;
+    width:100%;
+    transition:0.3s;
+    bottom:-100%;
+}
+.portfolio .imgs-container .box .caption h4{
+    font-weight:normal;
+    margin-bottom:10px;
+
+}
+.portfolio .imgs-container .box .caption p{
+    color:var(--main-color);
+}
+.portfolio .more{
+    background-color:var(--main-color);
+    color:white;
+    padding:15px 20px;
+    display:block;
+    width:fit-content;
+    margin:30px auto; /*to center the word*/
+    text-decoration:none;
+    text-transform:uppercase;
+    }
+/*end portfolio*/
+
+/*start video*/
+.video{
+    position:relative; /*لاستطيع وضع overlay by ::before*/
+}
+.video{
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background-color:rgb(0 0 0 / 40%);
+} 
+.video video{ /*search "aspect ratio"*/
+    width:100%;
+}
+.video .text{ /*اعادات اقسام الخلفيه الشفافه*/
+    width:100%;
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%); /*للتوسيط*/
+    padding:50px;
+    background-color:var(--transparent-color);
+    color:white;
+    text-align:center;
+}
+.video .text h2{
+    margin:0 0 30px;
+    text-transform:uppercase;
+    font-weight:normal;
+    }
+.video .text p{
+    margin-bottom:30px;
+}
+.video .text button{
+    background-color:black;
+    color:white;
+    padding:10px 20px;
+    border:none;
+    text-transform:uppercase;
+    }
+/*end video*/
+
+/*start about*/
+.about{
+    padding-top:var(--section-padding);
+    overflow:hidden; /*لاخفاء الجزء من الصوره الذى يخرج عن الاطار*/
+    text-align:center;
+
+}
+.about img{
+    position:relative; 
+    bottom:-120px; /*لاخفى جزء من الصوره*/
+    margin-top:-120px; /*لتقليل المسافه بين الصوره والكلام بنفس قيمه زياده المسافه*/
+    max-width:100%; /*لكي لا تعدي مساحه الصوره مساحه الشاشه التى هى فيها*/
+}
+@media(max-width:767px){ /*لتقليل المسافه بين الكلام والصوره*/
+    .about img{
+        bottom:-60px; /*لاخفى جزء من الصوره*/
+        margin-top:-60px; /*لتقليل المسافه بين الصوره والكلام بنفس قيمه زياده المسافه*/
+        }
+}
+/*end about*/
+
+/*start stats*/
+.stats{ /*استخدام ال sass يوفر الوقت والجهد كثيرا*/
+    padding-top:var(--section-padding);
+    padding-bottom:var(--section-padding);
+    text-align:center;
+    background-image:url("../images/stats.png");
+    background-size:cover;
+    position:relative; /*as we will make "overlay" with "position absolute"*/
+    }
+.stats::before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background-color:rgb(0 0 0 / 70%);
+}
+.stats .container{
+    position:relative; /*make ".stats .container" react by "z-index:auto;" */
+    /*لجع الكلام فوق ال overlay*/
+    /*processing sequence make ".stats .container" after ".stats .before" */
+    display:flex;
+    flex-wrap:wrap;
+}
+.stats .container .box{
+    color:white;
+    padding:50px;
+    background-color:var(--transparent-color);
+    }
+@media(max-width:767px){
+    .stats .container .box{
+        flex-basis:100%; /*ياخذ 100% من الشاشه*/
+    }
+}
+@media(min-width:768px){
+    .stats .container .box{
+        flex-basis:50%; /*يضع عنصران فى الشاشه*/
+    }
+}
+@media(min-width:992px){
+    .stats .container .box{
+        flex-basis:25%; /*يضع 4 عناصر في الشاشه*/
+    }
+}
+.stats .container .box i{
+    width:40px;
+    height:40px;
+    display:flex; /*ننسق بها الاشياء التى سوف تكون داخلها*/
+    background-color:black;
+    justify-content:center;
+    align-items:center;
+    border-radius:50%; /*لتحويله لدائره*/
+    margin:0 auto 30px;
+    }
+.stats .container .box .number{
+font-size:50px;
+font-weight:bold;
+margin:0 0 20px;
+}
+.stats .container .box p{
+    font-size:14px;
+}
+/*end stats*/
+
+/*start skills*/
+.our-skills{
+    padding-top:var(--section-padding);
+    padding-bottom: var(--section-padding);
+}
+.our-skills .container{
+    display:flex; /*لازم تكون موجوده ليعمل ال  child in flex*/
+    justify-content: space-between; /*لجعل المسافه بينهم*/
+    flex-wrap:wrap; /*عشان لو صغرت النافذه ينزلوا تحت*/
+
+    }
+@media(min-width:992px){
+    .our-skills .container > div{ /*direct child of ".container"*/
+        flex-basis:45%; /*لاجعل ال 10% الباقيه مسافه بينهم*/
+    }
+}
+.our-skills .container > div > h3{ /*direct child of ".container" that contain h3*/
+    margin:0 0 30;
+    font-weight:normal;
+    text-align:center;
+    text-transform:uppercase;
+}
+.our-skills .container > div > p{ /*direct child of ".container" that contain p*/
+    color:777;
+    line-height:2;
+    text-align:center;
+    margin-bottom:60px;
+}
+.our-skills  .testimonials .content{
+    display:flex;
+    align-items:center; /*to prevent "image" of stretching due to "flex" effect*/
+    margin-bottom:30px;
+}
+.our-skills  .testimonials .content img{
+    width:100px;
+    border-radius:50%; /*convert to circle*/
+    margin-right:50px;
+
+}
+@media(max-width:767px){
+.our-skills  .testimonials .content{
+    flex-direction:column; /*لعرض الايقونات فوق الكلام في وضع الموبايل*/
+    text-align:center;
+}
+.our-skills  .testimonials .content img{
+   margin:0 auto 20px; /*to center the image*/ 
+}
+}
+.our-skills  .testimonials .text{
+    line-height:1.8;
+    border-bottom:1px solid #ccc;
+} 
+.our-skills  .testimonials .text p{
+    color:#777;
+    text-align:right;
+    font-size:14px;
+    margin-bottom:10px;
+} 
+.our-skills .testimonials .bullets {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+  .our-skills .testimonials .bullets li {
+    width: 14px;
+    height: 14px;
+    border: 1px solid #aaa;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  .our-skills .testimonials .bullets li.active {
+    background-color: var(--main-color);
+    border-color: var(--main-color);
+  }
+.our-skills .skills .prog-holder {
+margin-bottom:40px;
+}
+.our-skills .skills .prog-holder h4{
+margin-bottom:15px;
+font-weight:normal;
+text-transform:uppercase;
+}
+.our-skills .skills .prog-holder .prog{ /*اللون الرمادي في الشريط*/
+background-color:#dedadc;
+height:30px; 
+}
+.our-skills .skills .prog-holder .prog span{ /*الشريط الازرق*/
+display:block;
+background-color:var(--main-color);
+height:100%;
+position:relative; /*لاننا سنوزع النسبه المؤيه بال position absolute*/
+}
+.our-skills .skills .prog-holder .prog span::before{ /*رقم النسبه المئويه*/
+    content:attr(data-progress);   /*it takes the value of "data-progress"*/ /*اضعها بصفر لكى استطيع رؤيتها والتعديل عليها فى المتصغح*/
+    position:absolute;
+    background-color:black;
+    color:white;
+    top:-40px;
+    right:-18px;
+    padding:4px 0;
+    width:40px;
+    text-align:center;
+    border-radius:4px;
+    }
+.our-skills .skills .prog-holder .prog span::after{ /*المثلث والواصل بالرقم*/
+    content:""; /*لاستطيع رؤيتها والتعديل عليها فى المتصغح*/
+    position:absolute;
+    border-style:solid;
+    border-width:8px;
+    border-color:black transparent transparent;
+    right:-8px;
+    top:-15px;
+}
+/*end skills*/
+
+/*start quote الاقتباس عن شخص*/
+.quote{
+    padding-top:var(--section-padding);
+    padding-bottom:var(--section-padding);
+    background-image:url("../images/quote.jpg");
+    background-size:cover;
+    position:relative; /*عشان حنعمل طبقه اللون بال absolute*/
+    text-align:center;
+    color:white;
+    }
+.quote::before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background-color:rgb(0 0 0 / 75%);
+}
+.quote .container{
+    position:relative; /*شان ياخد التدرج الطبيعي لل z-index ويبقى الكلام فوق الطبقه الشفافه*/
+}
+.quote q{ /*we can add (") mark by font awesome*/
+    font-size: 30px;
+    margin-bottom:20px;
+    display:block; /*عشان خاطر يبقى فوق ال span */
+}
+/*end quote الاقتباس عن شخص*/
+
+/*start pricing*/
+.pricing{
+    padding-top:var(--section-padding);
+    padding-bottom:var(--section-padding);
+    }
+.pricing .plans {
+    display:grid;
+    grid-template-columns:repeate(auto-fill,minmax(250px,1fr));
+    gap:30px;
+}
+.pricing .plans .plan{
+    background-color:#fcfcfc;
+    text-align:center;
+}
+.pricing .plans .plan .head{
+padding:40px 20px;
+border-top:1px solid var(--main-color);
+border-bottom:1px solid var(--main-color);
+}
+.pricing .plans .plan .head h3{
+    font-weight:normal;
+    margin-bottom:20px;
+    text-transform:uppercase;
+
+
+}
+.pricing .plans .plan .head span{
+    font-size:60px;
+    font-weight:bold;
+    /*position:relative; عشان حنوزع  $,/mo by position absolute*/
+}   /*i deleted the previous line as i distributed $ , /mo by relative */
+.pricing .plans .plan .head span::before{
+    content:"$";
+    font-size:25px;
+    position:relative;
+    top:-40px;
+    margin-right:15px;
+    font-weight:normal;
+    }
+.pricing .plans .plan .head span::after{
+    content:"/mo";
+    font-size:20px;
+    position:relative;
+    right:-15px;
+}
+.pricing .plans .plan ul{
+    border-bottom:1px solid var(--main-color);
+    }
+.pricing .plans .plan ul li{
+    padding:20px;
+    position:relative; /*as we will put "after" as "absolute"*/
+}
+.pricing .plans .plan ul li:not(:last-child)::after{
+    content:"";
+    width:140px;
+    height:1px;
+    background-color:var(--main-color);
+    position:absolute;
+    left:50px;
+    transform:translateX(-50%); /*لتوسيط الخط*/
+    bottom:0;
+}
+.pricing .plans .plan .footer a{
+    display:block;
+    padding:20px 20px;
+    text-decoration:none;
+    border:1px solid var(--main-color);
+    width:fit-content;
+    margin:30px auto; 
+}
+.pricing .contact-text{
+    text-align: center;
+    margin: 50px auto 20px;
+    font-size: 20px;
+}
+.pricing .contact-link{
+    display: block;
+    width: fit-content;
+    margin: 20px auto;
+    background-color: var(--main-color);
+    color: white;
+    padding: 15px 30px;
+    text-decoration: none;
+}
+/*end pricing*/
+
+/*start subscribe*/
+.subscribe{
+    padding-top: var(--section-padding);
+    padding-bottom: var(--section-padding);
+    background-image: url(../images/subscribe.jpg);
+    background-size: cover;
+    position: relative;
+    color: white;
+}
+.subscribe::before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background-color:rgb(0 0 0 / 50%);
+}
+.subscribe .container{
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+@media(max-width:991px){
+    .subscribe .container{
+        flex-direction:column;
+    }
+}
+.subscribe form{
+    display: flex; /*to make input beside the button with agood shape*/
+    position: relative; /*to could move "icon" with position "absolute"*/
+    width: 500px; /*مش عاوز الفلكس يحركهم بمزاجه*/
+    max-width: 100%; /*عشان لما نوصل للموبايل ميعديش شاشه الموبايل*/
+}
+.subscribe form i{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 25px;
+}
+.subscribe form input[type="email"]{
+    border: 1px solid white;
+    border-right: none;
+    background: none;
+    padding: 20px 20px 20px 60px;
+    caret-color: var(--main-color); /*لون الكتابه التي اكتبها*/  
+    width:calc(100%-130px);
+
+
+}
+.subscribe form input[type="submit"]{
+    width: 130px;
+    background-color: var(--main-color);
+    color: white;
+    padding: 10px 20px;
+    border: 1px solid white;
+    border-left: none;
+    text-transform: uppercase;   
+}
+.subscribe form input[type="email"]:focus,
+.subscribe form input[type="submit"]:focus{
+    outline:none;
+} /*عندما اقف بالماوس علي مربع البحث لا اريده ان يضيئ*/
+.subscribe .form ::placeholder{
+    color:white;
+}
+.subscribe p{
+       line-height:2;
+       margin-left:50px; 
+}
+@media(max-width:991px){
+    .subscribe p{
+        margin:30px 0 0;
+    }
+}
+/*end subscribe*/
+
+/*start contact*/
+.contact{
+    padding-top:var(--section-padding);
+    padding-bottom:var(--section-padding);
+
+}
+.contact .content{
+    display:flex; /*عشان العناصر تاتي جنب بعض*/
+    justify-content:space-between; /*لكي نضع بينهم مسافات*/
+}   
+@media(max-width:767px){
+    .contact .content{
+    flex-direction:column; /*لجعل الكلام ينزل تحت الجدول*/
+    }
+}
+.contact .content form{
+    flex-basis:70%;
+}
+.contact .content form .main-input{
+    padding: 20px;
+    display: block;
+    border: 1px solid #ccc;
+    margin-bottom: 30px;
+    width: 100%;
+}
+.contact .content form .main-input:focus{
+    outline:none;
+} /*عندما اقف بالماوس علي مربع البحث لا اريده ان يضيئ*/
+.contact .content form textarea.main-input{
+    height:20px;
+}
+.contact .content form input[type="submit"]{
+    background-color: var(--main-color);
+    color: white;
+    padding: 20px;
+    border: none;
+
+    display: flex; /*حركه حلوه تخليني اودي العنصر على اليمين بدون فلووت*/
+    margin-left: auto;
+
+    text-transform: uppercase;
+    cursor: pointer; /*لما تقف عليه يظهر الماوس بشكل اليد*/
+}
+.contact .content .info{
+    flex-basis:25%;
+}
+@media(max-width:767px){
+    .contact .content .info{
+        order:-1; /*لجعل عرض الكلام قبل الجدول*/
+        text-align:center;
+            }
+}
+.contact .content .info h4{
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    font-weight: 500;
+    font-size: 18px;
+}
+.contact .content .info .phone{
+    display: block; /*عشان ييجو تحت بعض*/
+    color: #777;
+    margin-bottom: 10px;
+}
+.contact .content .info h4:nth-of-type(2){
+    margin-top:90px;
+}
+@media(max-width:767px){
+    .contact .content .info h4:nth-of-type(2){
+        margin-TOP:30px;
+    }
+}
+.contact .content .info address{
+    color:#777;
+    line-height:2;
+}
+@media(max-width:767px){
+    .contact .content .info address{
+        margin-bottom:40px;
+    }
+}
+/*end contact*/
+
+/*start footer*/
+.footer{
+    padding-top:calc(var(--section-padding)/2);
+    padding-bottom:calc(var(--section-padding)/2);
+    background-image:url("../images/subscribe.jpg");
+    background-size:cover;
+    position:relative; /*absolute عشان فى "اوفر لى" جواه حيكون */
+    color:white;
+    text-align:center;
+    }
+.footer::before{ /*overlay*/
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background-color:rgb(0 0 0 / 70%)
+}
+.footer .container{ /*لجعل الكلام فوق الصوره */
+    position:relative;
+}
+.footer img{
+    margin-bottom:20px;
+}
+.footer p:not(.copyright){
+    text-transform: uppercase;
+    padding: 20px;
+    border-bottom: 1px solid white;
+    font-size: 22px;
+    width: fit-content; /*لتقليل عرض الخط*/
+    margin: 20px auto; /*to center it*/
+}
+.footer .social-icon i{
+    padding:10px 15px;
+}
+.footer .copyright{
+    margin-top:60px;
+}
+.footer .copyright span{
+    font-weight:bold;
+    color:var(--main-color);
+}
+/*end footer*/
+
+
+
+
+
+
+
+
+
+
+
+
