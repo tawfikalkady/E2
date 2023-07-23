@@ -113,8 +113,8 @@ header .container::after{
     position:absolute;
     height:1px;
     background-color:#a2a2a2;
-    bottom:-1;
-    width:calc(100%-30px);
+    bottom:-1px;
+    width:calc(100% - 30px);
     left:15px;
 }
 header .logo img{
@@ -142,7 +142,7 @@ display:flex;
     header nav ul{
         display:none;
     }
-    header nav .toggle-menu + ul{ /*next selector=next ul*/
+    header nav .toggle-menu:hover + ul{ /*next selector=next ul*/
         display:flex; /*make overide on "display:non;"*/
         flex-direction:column;
         position:absolute;
@@ -206,8 +206,8 @@ right:0;
     position:absolute;
     left:0;
     top:0;
-    width:0;
-    height:0;
+    width:100%;
+    height:100%;
     background-color:rgba(0 0 0 / 60%);
 
 }
@@ -288,7 +288,8 @@ border-color:var(--main-color);
 @media(min-width:768px){ /*grid */
     .services .services-container{
         display:grid;
-        grid-template-columns:repeat(auto-fill,minmax(450px,1fr)); /*fr=fraction*/
+       /* grid-template-columns:repeat(auto-fill,minmax(450px,1fr)); fr=fraction*/
+        grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
         grid-column-gap:40px;
         grid-row-gap:60px;
     }
@@ -461,7 +462,7 @@ display:flex;
 .video{
     position:relative; /*لاستطيع وضع overlay by ::before*/
 }
-.video{
+.video::before{
     content:"";
     position:absolute;
     left:0;
@@ -731,14 +732,15 @@ position:relative; /*لاننا سنوزع النسبه المؤيه بال posi
 }
 /*end quote الاقتباس عن شخص*/
 
-/*start pricing*/
+/*my start pricing*/
 .pricing{
     padding-top:var(--section-padding);
     padding-bottom:var(--section-padding);
     }
 .pricing .plans {
     display:grid;
-    grid-template-columns:repeate(auto-fill,minmax(250px,1fr));
+    /*grid-template-columns:repeate(auto-fill,minmax(250px,1fr));*/
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap:30px;
 }
 .pricing .plans .plan{
@@ -754,8 +756,6 @@ border-bottom:1px solid var(--main-color);
     font-weight:normal;
     margin-bottom:20px;
     text-transform:uppercase;
-
-
 }
 .pricing .plans .plan .head span{
     font-size:60px;
@@ -771,7 +771,7 @@ border-bottom:1px solid var(--main-color);
     font-weight:normal;
     }
 .pricing .plans .plan .head span::after{
-    content:"/mo";
+    content:"/Mo";
     font-size:20px;
     position:relative;
     right:-15px;
@@ -789,11 +789,11 @@ border-bottom:1px solid var(--main-color);
     height:1px;
     background-color:var(--main-color);
     position:absolute;
-    left:50px;
+    left:50%; /*هاااااااااااااااااااااااااااااااااااااااااااااااااااااااااااام لا تكتب px*/
     transform:translateX(-50%); /*لتوسيط الخط*/
     bottom:0;
 }
-.pricing .plans .plan .footer a{
+.pricing .plans .plan .foot a{
     display:block;
     padding:20px 20px;
     text-decoration:none;
@@ -815,7 +815,7 @@ border-bottom:1px solid var(--main-color);
     padding: 15px 30px;
     text-decoration: none;
 }
-/*end pricing*/
+/*my end pricing*/
 
 /*start subscribe*/
 .subscribe{
@@ -863,7 +863,7 @@ border-bottom:1px solid var(--main-color);
     background: none;
     padding: 20px 20px 20px 60px;
     caret-color: var(--main-color); /*لون الكتابه التي اكتبها*/  
-    width:calc(100%-130px);
+    width:calc(100% - 130px);
 
 
 }
@@ -1009,7 +1009,7 @@ border-bottom:1px solid var(--main-color);
     width: fit-content; /*لتقليل عرض الخط*/
     margin: 20px auto; /*to center it*/
 }
-.footer .social-icon i{
+.footer .social-icons i{
     padding:10px 15px;
 }
 .footer .copyright{
